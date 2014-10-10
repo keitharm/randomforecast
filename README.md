@@ -1,3 +1,5 @@
 Weather bot for Twitter that'll post the current weather conditions for a random area every minute!
 
-Totally useless but it'll be a fun project!
+You can also tweet @randomforecast a location, and it'll tell you the weather conditions for that spot!
+
+Totally useless but it's a fun project!
