@@ -14,25 +14,31 @@ class Weather
     public $xtraCondition;
     public $temperature;
 
+    public $valid = true;
+
     public function Weather($data) {
         $this->data = $data;
         $this->getRawData();
-        $this->analyzeData();
-        $this->analyzeForecast();
+
+        if ($this->valid) {
+            $this->analyzeData();
+            $this->analyzeForecast();
+        }
     }
 
     public function getRawData() {
-        $query            = urlencode("select item.condition.text from weather.forecast where woeid in (select woeid from geo.places(1) where text=" . $this->data . ")");
+        $query            = urlencode("select item.condition.text from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"" . $this->data . "\")");
         $url              = 'https://query.yahooapis.com/v1/public/yql?q=' . $query . '&format=json&diagnostics=true&env=store://datatables.org/alltableswithkeys';
         $json             = @file_get_contents($url);
-
-        // Check for invalid data
-        if ($json == false) {
-            die("Error, invalid location.\n");
-        }
         $this->raw_json   = $json;
 
         $decode           = json_decode($json);
+
+        // Check for invalid data
+        if ($decode->query->results == null) {
+            $this->valid = false;
+        }
+
         $this->raw_object = $decode;
     }
 
@@ -119,5 +125,7 @@ REPORT;
     public function getImage() { return $this->image; }
     public function getXtraCondition() { return $this->xtraCondition; }
     public function getTemperature() { return $this->temperature; }
+
+    public function isValid() { return $this->valid; }
 }
 ?>
