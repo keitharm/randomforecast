@@ -5,23 +5,17 @@ class Config
     const CONSUMER_KEY    = "";
     const CONSUMER_SECRET = "";
 
+    // User specific access credentials
     const ACCESS_TOKEN    = "";
     const ACCESS_SECRET   = "";
 
-    public static function getConsumerKey() {
-        return Config::CONSUMER_KEY;
-    }
+    // Flickr API Key
+    const FLICKR_KEY      = "";
 
-    public static function getConsumerSecret() {
-        return Config::CONSUMER_SECRET;
-    }
-
-    public static function getAccessToken() {
-        return Config::ACCESS_TOKEN;
-    }
-
-    public static function getAccessSecret() {
-        return Config::ACCESS_SECRET;
-    }
+    // RandomAPI.com to select random city from list
+    const API_KEY         = "";
+    const API_ID          = "";
+    const OBJECT_NAME     = "";
+    const OBJECT_FIELD    = "";
 }
 ?>
