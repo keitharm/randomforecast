@@ -113,7 +113,7 @@ class Weather
 
     public function generateReport() {
 $report = <<<REPORT
-It is currently {$this->getTemperature()} and {$this->getCondition()} in {$this->getLocation()}.
+It is currently {$this->getTemperature()} and {$this->getCondition()} for {$this->getData()}.
 REPORT;
         return $report;
     }
