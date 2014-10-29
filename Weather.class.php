@@ -112,8 +112,10 @@ class Weather
     }
 
     public function generateReport() {
+        $temperature = substr($this->getTemperature(), 0, strpos($this->getTemperature(), " "));
+        $celsius     = round(($temperature-32)*5/9);
 $report = <<<REPORT
-It is currently {$this->getTemperature()} and {$this->getCondition()} for {$this->getData()}.
+It is currently {$temperature}F/{$celsius}C and {$this->getCondition()} for {$this->getData()}.
 REPORT;
         return $report;
     }
